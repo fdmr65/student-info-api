@@ -33,18 +33,18 @@ namespace StudentInfo.Application.CommandHandlers.StudentHandler
 
         public async Task<StudentResponse> Handle(CreateStudentCommand request, CancellationToken cancellationToken)
         {
-            var studentEntity = _mapper.Map<Student>(request);
+            var entitiy = _mapper.Map<Student>(request);
 
-            if (studentEntity == null)
+            if (entitiy == null)
             {
                 throw new ApplicationException("Entitiy couldnt be mapped");
             }
 
-            var student = await _studentRepository.AddAsync(studentEntity);
+            var student = await _studentRepository.AddAsync(entitiy);
 
-            var studentResponse = _mapper.Map<StudentResponse>(student);
+            var resp = _mapper.Map<StudentResponse>(student);
 
-            return studentResponse;
+            return resp;
         }
 
 

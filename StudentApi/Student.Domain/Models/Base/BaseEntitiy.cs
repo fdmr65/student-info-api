@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
@@ -9,15 +10,21 @@ namespace StudentInfo.Domain.Models.Base
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Column("id")]
+        [Key]
         public virtual Guid Id { get; protected set; }
+
         [Column("is_active")]
         public virtual bool IsActive { get; protected set; }
+
         [Column("insert_date")]
         public virtual DateTime InsertDate { get; protected set; }
+
         [Column("insert_user")]
         public virtual string InsertUser { get; protected set; }
+
         [Column("update_date")]
         public virtual DateTime UpdateDate { get; protected set; }
+
         [Column("update_user")]
         public virtual string UpdateUser { get; protected set; }
 

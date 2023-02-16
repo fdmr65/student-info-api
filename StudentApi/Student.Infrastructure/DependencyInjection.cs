@@ -24,6 +24,8 @@ namespace StudentInfo.Infrastructure
             //Add Repositories
             services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
             services.AddTransient<IStudentRepository, StudentRepository>();
+            services.AddTransient<ILessonRepository, LessonRepository>();
+            services.AddTransient<ILessonNoteRepository, LessonNoteRepository>();
 
 
             return services;

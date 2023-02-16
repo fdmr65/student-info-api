@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using StudentInfo.Application.Helper;
 using StudentInfo.Domain.IRepositories.Base;
 using StudentInfo.Domain.Models.Base;
 using StudentInfo.Infrastructure.Context;
@@ -44,28 +45,20 @@ namespace StudentInfo.Infrastructure.Repositories.Base
             return await _dbContext.Set<T>().Where(a=>a.IsActive==true).ToListAsync();
         }
 
-        public async Task<IEnumerable<T>> GetAsync(Expression<Func<T, bool>> predicate = null, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, string includeString = null, bool disableTracking = true)
+        public async Task<IEnumerable<T>> GetActivesByPageAsync(int skip , int take)
         {
-            IQueryable<T> query = _dbContext.Set<T>();
-            if (disableTracking)
-                query = query.AsNoTracking();
-
-            if (!string.IsNullOrEmpty(includeString))
-                query = query.Include(includeString);
-
-            if (predicate != null)
-                query = query.Where(predicate);
-
-            if (orderBy != null)
-                return await orderBy(query).ToListAsync();
-
-            return await query.ToListAsync();
-
+            return await _dbContext.Set<T>().Where(a => a.IsActive == true).PageBy(skip,take).ToListAsync();
         }
 
+       
         public async Task<IEnumerable<T>> GetAsync(Expression<Func<T, bool>> predicate)
         {
             return await _dbContext.Set<T>().Where(predicate).ToListAsync();
+        }
+
+        public async Task<IEnumerable<T>> GetActiveByPageAsync(Expression<Func<T, bool>> predicate,int skip,int take)
+        {
+            return await _dbContext.Set<T>().Where(predicate).Where(a=>a.IsActive == true).PageBy(skip,take).ToListAsync();
         }
 
         public async Task<T> GetByIdAsync(Guid id)

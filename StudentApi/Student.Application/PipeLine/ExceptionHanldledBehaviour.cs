@@ -19,13 +19,14 @@ namespace StudentInfo.Application.PipeLine
 
         public async Task<IResponse> Handle(IRequest request, CancellationToken cancellationToken, RequestHandlerDelegate<IResponse> next)
         {
+            var requestName = typeof(IRequest).Name;
             try
             {
+                //_logger.LogInformation( "Request : {Name} {@Request}", requestName, request);
                 return await next();
             }
             catch (Exception ex)
             {
-                var requestName = typeof(IRequest).Name;
                 _logger.LogError(ex, "Request : UnHandled Exception for request {Name} {@Request}", requestName, request);
                 throw;
             }

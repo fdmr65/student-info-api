@@ -1,7 +1,7 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
@@ -12,6 +12,5 @@
     <ProjectReference Include="..\Student.Application\StudentInfo.Application.csproj" />
     <ProjectReference Include="..\Student.Infrastructure\StudentInfo.Infrastructure.csproj" />
   </ItemGroup>
-
 
 </Project>

@@ -1,17 +1,17 @@
 ﻿using MediatR;
-using StudentInfo.Application.Responses;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace StudentInfo.Application.Queries
 {
-    public class StudentByIdQuery : IRequest<StudentResponse>
+    public  class GetByIdQuery<T> : IRequest<T>
     {
         public Guid Id { get; set; }
-        public StudentByIdQuery(Guid id)
+
+        public GetByIdQuery(Guid ıd)
         {
-            Id = id;
+            Id = ıd;
         }
     }
 }

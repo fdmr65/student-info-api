@@ -13,11 +13,9 @@ namespace StudentInfo.Domain.IRepositories.Base
 
         Task<IEnumerable<T>> GetAllAsync();
         Task<IEnumerable<T>> GetAllByActiveAsync();
+        Task<IEnumerable<T>> GetActivesByPageAsync(int skip, int take);
         Task<IEnumerable<T>> GetAsync(Expression<Func<T, bool>> predicate);
-        Task<IEnumerable<T>> GetAsync(Expression<Func<T, bool>> predicate = null,
-                                      Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,
-                                      string includeString = null,
-                                      bool disableTracking = true);
+        Task<IEnumerable<T>> GetActiveByPageAsync(Expression<Func<T, bool>> predicate, int skip, int take);
         Task<T> GetByIdAsync(Guid id);
         Task<T> AddAsync(T entity);
         Task UpdateAsync(T entity);
